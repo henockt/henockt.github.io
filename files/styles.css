@@ -55,14 +55,19 @@
     font-size: xxx-large;
 }
 
+.social i:hover {
+    color: blue;
+}
+
 @media (max-width: 760px) {
     .front {
         flex-wrap: wrap;
         padding: 50px;
+        min-height: 90vh;
     }
     
     .front h1 {
-        font-size: larger;
+        font-size: x-large;
     }
 
     .front h4 {
