@@ -1,2 +1,2 @@
-# henockt.github.io
-Homepage
+# Homepage
+ - Uses [Font Awesome icons](https://fontawesome.com).
