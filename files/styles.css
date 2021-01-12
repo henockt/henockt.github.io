@@ -56,11 +56,12 @@
 .social i {
     margin: 30px;
     font-size: xxx-large;
+    transition: 0.3s;
 }
 
 .social i:hover {
-    color: blue;
-    font-size: 55px;
+    color: gold;
+    font-size: 65px;
 }
 
 @media (max-width: 760px) {
