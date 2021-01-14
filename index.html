@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="files/styles.css">
     <script src="https://kit.fontawesome.com/8be913572e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Welcome | henockt</title>
 </head>
 <body>
     <section class="front">
         <header>
             <img src="files/avatar.png" alt="Henock" class="avatar">
-            <h1>Henock</h1>
+            <h1 class="name">Henock</h1>
             <h4>Just a Student!</h4>
         </header>
 
@@ -28,6 +29,13 @@
             </ul>
         </div>
     </section>
-
+    <script type="text/javascript">
+        const elt = document.querySelector(".name");
+        document.onreadystatechange = () => {
+            if (document.readyState === "complete") {
+                elt.classList.add("animate__animated", "animate__slow", "animate__flipInX");
+            }
+        };
+    </script>
 </body>
 </html>
