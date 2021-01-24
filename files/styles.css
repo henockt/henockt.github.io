@@ -60,11 +60,24 @@
 }
 
 .social i:hover {
-    color: gold;
+    color: tomato;
     font-size: 65px;
 }
 
-@media (max-width: 760px) {
+.howto {
+    font-size: inherit;
+    border-bottom: 2px solid tomato;
+    transition: 2s;
+}
+
+@media (max-width: 800px) {
+    .front {
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 415px) {
     .front {
         flex-wrap: wrap;
         padding: 50px;
