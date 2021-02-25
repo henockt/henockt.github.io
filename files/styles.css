@@ -45,12 +45,25 @@
     max-width: 700px;
     text-align: center;
     margin-left: 30px;
+    line-height: 35px;
 }
 
 .social {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+}
+
+.links a {
+    margin: 10px;
+    font-size: large;
+    text-transform: lowercase;
+    color: red;
 }
 
 .social i {
@@ -113,6 +126,10 @@
 
     .social i:hover {
         font-size: 40px;
+    }
+
+    .links a {
+        font-size: medium;
     }
 }
 
