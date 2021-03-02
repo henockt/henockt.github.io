@@ -76,6 +76,7 @@
     font-size: large;
     text-transform: lowercase;
     color: red;
+    font-weight: 400;
 }
 
 .social i {
@@ -102,6 +103,20 @@
     width: 100%;
     height: 100%;
     z-index: 5;
+}
+
+.preloader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 9999;
+}
+
+.preloader img {
+    position: absolute;
+    top: 45%;
+    left: 45%;
 }
 
 @media (max-width: 800px) {

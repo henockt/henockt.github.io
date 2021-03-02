@@ -14,7 +14,14 @@
     <title>Welcome | henockt</title>
 </head>
 <body>
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <img src="files/preloader.gif" alt="Preloader">
+    </div>
+
+    <!-- PARTICLES -->
     <div id="particles-js"></div>
+    
     <div class="front">
         <header>
             <img src="files/avatar.png" alt="Henock" class="avatar">
@@ -44,8 +51,10 @@
     <script type="text/javascript">
         const elt = document.querySelector(".name");
         const howto = document.querySelector(".howto");
+        const pd = document.querySelector(".preloader");
         document.onreadystatechange = () => {
             if (document.readyState === "complete") {
+                pd.style.display = "none";
                 elt.classList.add("animate__animated", "animate__slow", "animate__flipInX");
                 howto.classList.add("animate__animated", "animate__slow", "animate__flipInX");
             }
