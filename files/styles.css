@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 
+:root {
+    --opacity: 0.85;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +12,7 @@
     background: #111;
     color: #fff;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .front {
@@ -32,6 +37,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 5;
+    opacity: var(--opacity);
 }
 
 .front h1 {
@@ -46,6 +53,11 @@
     text-align: center;
     margin-left: 30px;
     line-height: 35px;
+}
+
+.right {
+    z-index: 5;
+    opacity: var(--opacity);
 }
 
 .social {
@@ -83,14 +95,39 @@
     transition: 2s;
 }
 
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
 @media (max-width: 800px) {
     .front {
         flex-wrap: wrap;
+    }
+
+    .right {
+        margin-top: 35px;
     }
 }
 
 
 @media (max-width: 415px) {
+    #particles-js {
+        display: none;
+    }
+
+    .right {
+        opacity: unset;
+    }
+
+    .front header {
+        opacity: unset;
+    }
+
     .front {
         flex-wrap: wrap;
         padding: 50px;
@@ -111,7 +148,6 @@
     }
 
     .right p {
-        margin-top: 10px;
         font-size: medium;
         margin-left: 0px;
     }
