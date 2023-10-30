@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="files/bg.jpg" sizes="32x32"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="og:title" content="henockt">
+    <meta name="og:description" content="Henock's personal website">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="files/styles.css">
+    <script src="https://kit.fontawesome.com/8be913572e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>henockt</title>
+</head>
+<body>
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <img src="files/preloader.gif" alt="Preloader">
+    </div>
+
+    <!-- PARTICLES -->
+    <div id="particles-js"></div>
+    
+    <div class="front">
+        <header>
+            <img src="files/bg.jpg" alt="Henock" class="avatar">
+            <h1 class="name">Henock</h1>
+        </header>
+
+        <div class="right">
+            <main>
+                <p>Hey There! I'm Henock and I just love to learn <small class="howto">how to program</small>. That's it! You can find me on the links below.</p>
+            </main>
+
+            <ul class="social">
+                <a href="https://github.com/henockt"><i class="fab fa-github"></i></a>
+                <a href="mailto:contacthenockd@gmail.com"><i class="fas fa-envelope"></i></a>
+            </ul>
+
+            <ul class="links">
+                <a class="projects">Some of my projects: </a>
+                <a href="https://heno-notes.onrender.com" title="This app is hosted on Render">heno notes</a>      
+                <a href="https://smath.onrender.com/" title="This app is hosted on Render">smath</a>
+            </ul>
+        </div>
+    </div>
+    <script src="files/particles.min.js"></script>
+    <script src="files/app.js"></script>
+    <script type="text/javascript">
+
+        // random function
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }         
+
+        const elt = document.querySelector(".name");
+        const howto = document.querySelector(".howto");
+        const pd = document.querySelector(".preloader");
+        document.onreadystatechange = () => {
+            if (document.readyState === "complete") {
+                pd.style.display = "none";
+                elt.classList.add("animate__animated", "animate__slow", "animate__flipInX");
+                howto.classList.add("animate__animated", "animate__slow", "animate__flipInX");
+            }
+        };
+
+        const list = ["how to program", "how computers function", "how the internet works"];
+        howto.innerHTML = list[getRandomInt(list.length)];
+    </script>
+</body>
+</html>
