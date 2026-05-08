@@ -43,12 +43,12 @@
 
 .front h1 {
     margin-top: 10px;
-    font-weight: 600;
+    font-weight: 400;
     font-size: xx-large;
 }
 
 .right p {
-    font-size: larger;
+    font-size: 1rem;
     max-width: 700px;
     text-align: center;
     margin-left: 30px;
@@ -66,6 +66,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    list-style: none;
+    gap: 30px;
 }
 
 .projects {
@@ -82,14 +84,28 @@
     margin: 10px;
     font-size: large;
     text-transform: lowercase;
-    color: aqua;
+    color: darkturquoise;
     font-weight: 400;
 }
 
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
 .social i {
-    margin: 30px;
+    margin: 20px 20px 8px;
     font-size: xxx-large;
     transition: 0.3s;
+}
+
+.social-label {
+    font-size: 0.7rem;
+    text-transform: none;
+    font-weight: 500;
+    letter-spacing: 0.04em;
 }
 
 .social i:hover {
@@ -179,6 +195,7 @@
 
     .social {
         margin-top: 10px;
+        gap: 20px;
     }
 
     .social i {
@@ -193,4 +210,3 @@
         font-size: medium;
     }
 }
-
