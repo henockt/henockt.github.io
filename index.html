@@ -1,77 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="files/bg.jpg" sizes="32x32"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="og:title" content="henockt">
-    <meta name="og:description" content="Henock's personal website">
-    <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="files/styles.css">
-    <script src="https://kit.fontawesome.com/8be913572e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <title>henockt</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>henockt</title>
+<meta name="description" content="Henock — computer scientist and backend developer working in Go and TypeScript.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- PRELOADER -->
-    <!-- <div class="preloader">
-        <img src="files/preloader.gif" alt="Preloader">
-    </div>
- -->
-    <!-- PARTICLES -->
-    <div id="particles-js"></div>
-    
-    <div class="front">
-        <header>
-            <img src="files/bg.jpg" alt="Henock" class="avatar">
-            <h1 class="name">Henock</h1>
-        </header>
 
-        <div class="right">
-            <main>
-                <p>Hey There! I'm Henock, a backend engineer focused on reliable APIs and secure systems. Currently exploring the complexities of scalable API design and distributed systems.</p>
-            </main>
+<!-- Site Header -->
+<header class="site-header">
+  <div class="site-brand">
+    <a class="site-title" data-nav="about">henockt</a>
+    <div class="site-divider-v"></div>
+    <span class="site-tagline">Software Engineer</span>
+  </div>
+  <nav class="site-header-nav">
+    <a data-nav="about" class="nav-active">About</a>
+    <a data-nav="contact">Contact</a>
+    <a class="nav-external" href="https://github.com/henockt" target="_blank" rel="noopener">GitHub<svg class="nav-arrow" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9L9 3M9 3H4.2M9 3v4.8"/></svg></a>
+  </nav>
+</header>
 
-            <ul class="social">
-                    <a href="https://github.com/henockt" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:contacthenockd@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-            </ul>
+<!-- Main Split -->
+<div class="split-container">
 
-            <ul class="links">
-                <a class="projects">Some of my projects: </a>
-                <a href="https://github.com/henockt/relay" title="This app is hosted on GCP">relay</a>      
-                <a href="https://github.com/henockt/cello">cello</a>
-            </ul>
+  <!-- LEFT: Swappable Panels -->
+  <div class="left-side">
+
+    <!-- Panel: About (home) -->
+    <div class="panel panel-active" id="panel-about">
+      <div class="about-content">
+        <span class="about-label">About</span>
+        <h2 class="about-headline">Hi, I'm Henock. I build backend systems and AI infrastructure.</h2>
+        <p class="about-body">
+          I write clear code, test carefully, and build reliable APIs and secure systems grounded in data structures and algorithms. I’m drawn to problems that sit close to the network (proxies, tunnels, mail routing) and to code that stays correct under concurrency. Currently exploring scalable API design, distributed systems, and inference pipelines.
+        </p>
+        <div class="about-stack">
+          <span class="stack-label">Stack</span>
+          <ul class="stack-list">
+            <li>Go</li>
+            <li>TypeScript</li>
+            <li>Python</li>
+            <li>PostgreSQL</li>
+            <li>Docker</li>
+            <li>React</li>
+          </ul>
         </div>
+        <a class="about-github" href="https://github.com/henockt" target="_blank" rel="noopener">
+          <span class="about-github-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          </span>
+          <span class="about-github-text">github.com/henockt</span>
+          <span class="about-github-arrow" aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+
+      <div class="panel-header panel-header-work">
+        <span>Selected Work</span>
+      </div>
+      <ul class="project-list" id="projectList">
+        <li class="project-item" data-index="0">
+          <a href="https://github.com/henockt/relay" target="_blank" rel="noopener" class="project-link">
+            <span class="project-number">01</span>
+            <span class="project-title">relay</span>
+            <span class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="project-category">Email Aliasing</span>
+          </a>
+        </li>
+        <li class="project-item" data-index="1">
+          <a href="https://github.com/henockt/cello" target="_blank" rel="noopener" class="project-link">
+            <span class="project-number">02</span>
+            <span class="project-title">cello</span>
+            <span class="project-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="project-category">Tunneling</span>
+          </a>
+        </li>
+      </ul>
+      <div class="panel-footer">
+        <span>2 Projects</span>
+        <span>Hover to Preview</span>
+      </div>
     </div>
 
-    <script src="files/particles.min.js"></script>
-    <script src="files/app.js"></script>
-    <script type="text/javascript">
+    <!-- Panel: Contact -->
+    <div class="panel" id="panel-contact">
+      <div class="contact-content">
+        <span class="contact-label">Get in Touch</span>
+        <h2 class="contact-headline">Start a conversation.</h2>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to build?" required></textarea>
+          </div>
+          <!-- honeypot: hidden from people, tempting to bots -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-trap">
+          <button type="submit" class="form-submit">Send Message</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+        <!-- <div class="contact-details">
+          <span>GitHub</span>
+          <a href="https://github.com/henockt" target="_blank" rel="noopener">github.com/henockt</a>
+        </div> -->
+      </div>
+    </div>
 
-        // random function
-        function getRandomInt(max) {
-            return Math.floor(Math.random() * max);
-        }         
+  </div>
 
-        const elt = document.querySelector(".name");
-        const howto = document.querySelector(".howto");
-        const pd = document.querySelector(".preloader");
-        document.onreadystatechange = () => {
-            if (document.readyState === "complete") {
-                pd.style.display = "none";
-                elt.classList.add("animate__animated", "animate__slow", "animate__flipInX");
-                howto.classList.add("animate__animated", "animate__slow", "animate__flipInX");
-            }
-        };
+  <!-- Divider -->
+  <div class="split-divider"></div>
 
-        const list = ["how to program", "how computers function", "how the internet works"];
-        howto.innerHTML = list[getRandomInt(list.length)];
-    </script>
+  <!-- RIGHT: The Canvas -->
+  <div class="canvas-side" id="canvasSide">
+
+    <!-- Project previews -->
+    <div class="canvas-image is-flat" data-slide="0">
+      <figure class="shot">
+        <img src="images/relay.png" alt="relay landing page and Google sign-in screen" loading="lazy">
+        <figcaption class="canvas-caption">
+          <div class="canvas-caption-title">relay</div>
+          <div class="canvas-caption-year">Go · Next.js · PostgreSQL · SendGrid</div>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="canvas-image is-flat" data-slide="1">
+      <figure class="shot">
+        <img src="images/cello.svg" alt="cello system architecture diagram" loading="lazy">
+        <figcaption class="canvas-caption">
+          <div class="canvas-caption-title">cello</div>
+          <div class="canvas-caption-year">System architecture - Go · TCP · Reverse Proxy</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- About: generative network, drawn in canvas (see main.js) -->
+    <div class="canvas-context is-generative visible" data-context="about">
+      <canvas id="netCanvas" class="net-canvas" role="img" aria-label="Animated diagram of a network graph with packets moving between nodes"></canvas>
+      <!-- <div class="canvas-context-overlay">
+        <span class="canvas-context-attr">Prim's MST</span>
+      </div> -->
+    </div>
+
+    <!-- Contact: typographic panel, no image asset -->
+    <div class="canvas-context is-type" data-context="contact">
+      <div class="type-panel">
+        <!-- <span class="type-eyebrow">Available</span> -->
+        <p class="type-statement">Open to collaboration.</p>
+        <dl class="type-meta">
+        </dl>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Site Footer -->
+<footer class="site-footer">
+  <span>&copy; 2026 henockt</span>
+  <!-- <div class="footer-links">
+    <a href="https://github.com/henockt" rel="noopener" target="_blank">GitHub</a>
+  </div> -->
+</footer>
+<script src="main.js"></script>
+
 </body>
 </html>

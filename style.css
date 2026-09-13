@@ -1,0 +1,1486 @@
+@charset "utf-8";
+/* CSS Document */
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--paper: #F2F0ED;
+	--ink: #1A1A1A;
+	--ink-light: #5E574F;
+	--accent: #C4553A;
+	--error: #A83B22;
+	--success: #2F6B4F;
+	--grain-opacity: 0.035;
+	--transition-panel: 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background-color: var(--paper);
+	color: var(--ink);
+	font-family: 'Instrument Sans', sans-serif;
+	overflow: hidden;
+	height: 100vh;
+	height: 100dvh;
+	width: 100vw;
+	position: relative;
+}
+
+/* ── Grain Overlay ── */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	pointer-events: none;
+	opacity: var(--grain-opacity);
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	background-repeat: repeat;
+	background-size: 180px;
+}
+
+/* ── Site Header ── */
+.site-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.2rem 3rem;
+	pointer-events: none;
+	animation: fadeIn 0.5s ease backwards;
+}
+
+.site-header>* {
+	pointer-events: auto;
+}
+
+.site-brand {
+	display: flex;
+	align-items: baseline;
+	gap: 1rem;
+}
+
+.site-title {
+	font-family: 'Playfair Display', serif;
+	font-weight: 900;
+	font-size: 1.15rem;
+	letter-spacing: 0.02em;
+	/* text-transform: uppercase; */
+	color: var(--ink);
+	text-decoration: none;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.site-divider-v {
+	width: 1px;
+	height: 14px;
+	background: rgba(26, 26, 26, 0.2);
+	flex-shrink: 0;
+}
+
+.site-tagline {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.62rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	line-height: 1;
+}
+
+.site-header-nav {
+	display: flex;
+	gap: 0.35rem;
+}
+
+.site-header-nav a {
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 500;
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	text-decoration: none;
+	position: relative;
+	padding: 0.35rem 0.7rem;
+	transition: color 0.35s ease;
+	cursor: pointer;
+}
+
+.site-header-nav a::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--ink);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	z-index: -1;
+}
+
+.site-header-nav a:hover {
+	color: var(--paper);
+}
+
+.site-header-nav a:hover::before {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.site-header-nav a.nav-active {
+	color: var(--paper);
+}
+
+.site-header-nav a.nav-active::before {
+	transform: scaleX(1);
+}
+
+/* Plain anchor like its siblings — inline-flex would centre the label against
+   the taller arrow and drop the text a couple of pixels below the others. */
+.site-header-nav a.nav-external .nav-arrow {
+	width: 0.72em;
+	height: 0.72em;
+	margin-left: 0.34em;
+	vertical-align: -0.01em;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.6;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	opacity: 0.75;
+}
+
+/* ── Site Footer ── */
+.site-footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 3rem;
+	pointer-events: none;
+	animation: fadeIn 0.5s ease backwards;
+}
+
+.site-footer>* {
+	pointer-events: auto;
+}
+
+.site-footer span,
+.site-footer a {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.6rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	text-decoration: none;
+}
+
+.footer-links {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+.footer-dot {
+	font-size: 0.7rem;
+	opacity: 0.6;
+}
+
+.site-footer a:hover {
+	color: var(--ink);
+}
+
+/* ── Main Split Layout ── */
+.split-container {
+	display: flex;
+	height: 100vh;
+	height: 100dvh;
+	width: 100vw;
+	padding-top: 4.2rem;
+	padding-bottom: 3.2rem;
+}
+
+/* ── Divider ── */
+.split-divider {
+	width: 1px;
+	align-self: stretch;
+	background: rgba(26, 26, 26, 0.1);
+	position: relative;
+	z-index: 3;
+	flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+     LEFT SIDE — Panel System
+     ══════════════════════════════════════ */
+.left-side {
+	width: 50vw;
+	position: relative;
+	overflow: hidden;
+}
+
+.panel {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-content: safe center;
+	padding: 1rem 0;
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity var(--transition-panel),
+		transform var(--transition-panel);
+	pointer-events: none;
+	overflow-y: auto;
+}
+
+.panel.panel-active {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+	z-index: 2;
+}
+
+/* ── Panel: Work ── */
+.about-github {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	margin-top: 1.6rem;
+	padding: 0.55rem 1.1rem 0.55rem 0.9rem;
+	border: 1px solid rgba(26, 26, 26, 0.25);
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 500;
+	font-size: 0.85rem;
+	letter-spacing: 0.01em;
+	color: var(--ink);
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+	transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.about-github::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--ink);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	z-index: 0;
+}
+
+.about-github:hover {
+	color: var(--paper);
+	border-color: var(--ink);
+}
+
+.about-github:hover::before {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.about-github > * {
+	position: relative;
+	z-index: 1;
+}
+
+.about-github-icon {
+	display: flex;
+	align-items: center;
+}
+
+.about-github-icon svg {
+	width: 1.05em;
+	height: 1.05em;
+	fill: currentColor;
+	display: block;
+}
+
+.about-github-arrow {
+	font-size: 0.85em;
+	opacity: 0.75;
+}
+
+.panel-header {
+	padding: 0 3rem 1.5rem;
+}
+
+.panel-header span {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.7rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+}
+
+.project-list {
+	list-style: none;
+	border-top: 1px solid rgba(26, 26, 26, 0.12);
+}
+
+.project-item {
+	border-bottom: 1px solid rgba(26, 26, 26, 0.12);
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.project-item::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: var(--ink);
+	transform: scaleY(0);
+	transform-origin: bottom;
+	transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+	z-index: 0;
+}
+
+.project-item:hover::before,
+.project-item.active::before {
+	transform: scaleY(1);
+}
+
+.project-link {
+	display: flex;
+	align-items: baseline;
+	gap: 1.5rem;
+	padding: 1.15rem 3rem;
+	text-decoration: none;
+	color: inherit;
+	position: relative;
+	z-index: 1;
+	transition: color 0.3s ease;
+}
+
+.project-item:hover .project-link,
+.project-item.active .project-link {
+	color: var(--paper);
+}
+
+.project-number {
+	font-family: 'DM Mono', monospace;
+	font-weight: 400;
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	opacity: 0.7;
+	min-width: 2rem;
+	transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-number {
+	opacity: 0.9;
+}
+
+.project-title {
+	font-family: 'Playfair Display', serif;
+	font-weight: 800;
+	font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	line-height: 1.1;
+}
+
+.project-category {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.65rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	opacity: 0.7;
+	margin-left: auto;
+	transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-category {
+	opacity: 0.9;
+}
+
+.project-arrow {
+	width: 0;
+	overflow: hidden;
+	transition: width 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+	display: flex;
+	align-items: center;
+}
+
+.project-arrow svg {
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+	stroke: var(--paper);
+	fill: none;
+	stroke-width: 1.5;
+}
+
+.project-item:hover .project-arrow {
+	width: 24px;
+}
+
+.panel-footer {
+	padding: 1.5rem 3rem 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.panel-footer span {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.65rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+}
+
+/* ── Panel: About ── */
+.about-content {
+	padding: 2rem 3rem;
+}
+
+.about-label {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.68rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	margin-bottom: 2rem;
+	display: block;
+}
+
+.about-headline {
+	font-family: 'Playfair Display', serif;
+	font-weight: 800;
+	font-size: clamp(1.8rem, 3vw, 2.8rem);
+	line-height: 1.15;
+	margin-bottom: 2rem;
+	max-width: 420px;
+}
+
+.about-headline em {
+	font-style: italic;
+	font-weight: 700;
+	color: var(--accent);
+}
+
+.about-body {
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 400;
+	font-size: 0.88rem;
+	line-height: 1.7;
+	color: var(--ink-light);
+	max-width: 400px;
+	margin-bottom: 2.5rem;
+}
+
+.about-stack {
+	padding-top: 2rem;
+	border-top: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.stack-label {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.6rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	display: block;
+	margin-bottom: 0.7rem;
+}
+
+.stack-list {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.55rem 0.9rem;
+}
+
+.stack-list li {
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 500;
+	font-size: 0.85rem;
+	letter-spacing: 0.01em;
+	color: var(--ink);
+	position: relative;
+}
+
+.stack-list li:not(:last-child)::after {
+	content: '·';
+	position: absolute;
+	right: -0.58rem;
+	color: var(--ink-light);
+	opacity: 0.7;
+}
+
+/* ── Panel: Contact ── */
+.contact-content {
+	padding: 2rem 3rem;
+}
+
+.contact-label {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.68rem;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	margin-bottom: 2rem;
+	display: block;
+}
+
+.contact-headline {
+	font-family: 'Playfair Display', serif;
+	font-weight: 800;
+	font-size: clamp(1.8rem, 3vw, 2.8rem);
+	line-height: 1.15;
+	margin-bottom: 2.5rem;
+}
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	max-width: 400px;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.form-group label {
+	font-family: 'DM Mono', monospace;
+	font-weight: 400;
+	font-size: 0.62rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+}
+
+.form-group input,
+.form-group textarea {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(26, 26, 26, 0.15);
+	padding: 0.6rem 0;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 0.9rem;
+	color: var(--ink);
+	outline: none;
+	transition: border-color 0.3s ease;
+	resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	border-bottom-color: var(--ink);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+	color: var(--ink-light);
+	opacity: 0.9;
+}
+
+.form-group textarea {
+	min-height: 80px;
+}
+
+.form-submit {
+	align-self: flex-start;
+	margin-top: 0.5rem;
+	padding: 0.75rem 2.5rem;
+	background: var(--ink);
+	color: var(--paper);
+	border: none;
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 600;
+	font-size: 0.72rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	transition: background 0.35s ease;
+}
+
+.form-submit:hover {
+	background: var(--accent);
+}
+
+/* Honeypot — off-screen for bots, never shown or focusable for people */
+.form-trap {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.form-status {
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 0.8rem;
+	line-height: 1.45;
+	min-height: 1.2em;
+	color: var(--ink-light);
+}
+
+.form-status-success {
+	color: var(--success);
+	font-weight: 500;
+}
+
+.form-status-error {
+	color: var(--error);
+	font-weight: 500;
+}
+
+.form-submit:disabled {
+	opacity: 0.6;
+	cursor: default;
+}
+
+.contact-details {
+	margin-top: 3rem;
+	padding-top: 2rem;
+	border-top: 1px solid rgba(26, 26, 26, 0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	max-width: 400px;
+}
+
+.contact-details a {
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 400;
+	font-size: 0.85rem;
+	color: var(--ink-light);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+	color: var(--ink);
+}
+
+.contact-details span {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.58rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+}
+
+/* ══════════════════════════════════════
+     RIGHT SIDE — Canvas
+     ══════════════════════════════════════ */
+.canvas-side {
+	width: 50vw;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.canvas-image {
+	position: absolute;
+	inset: 2rem;
+	opacity: 0;
+	transform: scale(1.08);
+	transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+		transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+	z-index: 0;
+}
+
+.canvas-image.visible {
+	opacity: 1;
+	transform: scale(1);
+	z-index: 2;
+}
+
+.canvas-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	filter: grayscale(15%) contrast(1.03);
+}
+
+.canvas-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 3rem 2rem 2rem;
+	background: linear-gradient(to top, rgba(12, 12, 12, 0.88) 0%, rgba(12, 12, 12, 0.55) 45%, transparent 100%);
+	opacity: 0;
+	transform: translateY(8px);
+	transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
+}
+
+.canvas-image.visible .canvas-caption {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.canvas-caption-title {
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 600;
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+
+.canvas-caption-year {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.68rem;
+	color: rgba(255, 255, 255, 0.85);
+	margin-top: 0.35rem;
+}
+
+/* Flat assets (screenshots, diagrams) get a card instead of a full-bleed photo:
+   contained so nothing is cropped, uncoloured filter, caption on a solid bar. */
+.canvas-image.is-flat {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.canvas-image.is-flat .shot {
+	width: 100%;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	background: #FFFFFF;
+	border: 1px solid rgba(26, 26, 26, 0.14);
+	box-shadow: 0 18px 40px -28px rgba(26, 26, 26, 0.45);
+}
+
+.canvas-image.is-flat img {
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+	min-height: 0;
+	flex: 0 1 auto;
+	object-fit: contain;
+	filter: none;
+	padding: clamp(0.75rem, 2.2vh, 1.75rem);
+}
+
+.canvas-image.is-flat .canvas-caption {
+	position: static;
+	flex: 0 0 auto;
+	background: var(--paper);
+	border-top: 1px solid rgba(26, 26, 26, 0.12);
+	padding: clamp(0.6rem, 1.7vh, 1.1rem) clamp(0.9rem, 2vw, 1.5rem);
+}
+
+.canvas-image.is-flat .canvas-caption-title {
+	color: var(--ink);
+}
+
+.canvas-image.is-flat .canvas-caption-year {
+	color: var(--ink-light);
+}
+
+/* Context images (about / contact) */
+.canvas-context {
+	position: absolute;
+	inset: 2rem;
+	opacity: 0;
+	transform: scale(1.05);
+	transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+		transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+	z-index: 0;
+}
+
+.canvas-context.visible {
+	opacity: 1;
+	transform: scale(1);
+	z-index: 2;
+}
+
+.canvas-context img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.canvas-context-overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 3.5rem 2.5rem 2.5rem;
+	background: linear-gradient(to top, rgba(12, 12, 12, 0.9) 0%, rgba(12, 12, 12, 0.55) 50%, transparent 90%);
+}
+
+/* Generative About canvas: a card like the project shots, caption on a solid
+   bar — the white-on-dark gradient treatment is for photos, not ink on paper. */
+.canvas-context.is-generative {
+	display: flex;
+	flex-direction: column;
+	background: #FFFFFF;
+	border: 1px solid rgba(26, 26, 26, 0.14);
+	box-shadow: 0 18px 40px -28px rgba(26, 26, 26, 0.45);
+	overflow: hidden;
+}
+
+.net-canvas {
+	flex: 1 1 auto;
+	min-height: 0;
+	width: 100%;
+	display: block;
+}
+
+.canvas-context.is-generative .canvas-context-overlay {
+	position: static;
+	flex: 0 0 auto;
+	background: var(--paper);
+	border-top: 1px solid rgba(26, 26, 26, 0.12);
+	padding: clamp(0.9rem, 2.4vh, 1.6rem) clamp(1rem, 2vw, 1.6rem);
+}
+
+.canvas-context.is-generative .canvas-context-quote {
+	color: var(--ink);
+	font-size: clamp(0.92rem, 1.4vw, 1.15rem);
+}
+
+.canvas-context.is-generative .canvas-context-attr {
+	color: var(--ink-light);
+}
+
+/* Contact: a typographic composition rather than an image. */
+.canvas-context.is-type {
+	display: flex;
+	align-items: center;
+	background: #FFFFFF;
+	border: 1px solid rgba(26, 26, 26, 0.14);
+	box-shadow: 0 18px 40px -28px rgba(26, 26, 26, 0.45);
+	overflow: hidden;
+}
+
+.type-panel {
+	width: 100%;
+	padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.type-eyebrow {
+	display: inline-block;
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: clamp(0.58rem, 1.2vh, 0.72rem);
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	padding-bottom: 0.45rem;
+	border-bottom: 1px solid var(--accent);
+	margin-bottom: clamp(1rem, 3vh, 2.2rem);
+}
+
+.type-statement {
+	font-family: 'Playfair Display', serif;
+	font-weight: 800;
+	font-size: clamp(1.15rem, 2.9vh, 2.3rem);
+	line-height: 1.2;
+	color: var(--ink);
+	/* max-width: 15ch; */
+	margin-bottom: clamp(1.2rem, 3.4vh, 2.6rem);
+}
+
+.type-meta {
+	border-top: 1px solid rgba(26, 26, 26, 0.12);
+}
+
+.type-row {
+	display: flex;
+	gap: 1rem;
+	align-items: baseline;
+	justify-content: space-between;
+	padding: clamp(0.45rem, 1.4vh, 0.85rem) 0;
+	border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.type-row dt {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: clamp(0.58rem, 1.2vh, 0.7rem);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ink-light);
+	flex: 0 0 auto;
+}
+
+.type-row dd {
+	font-family: 'Instrument Sans', sans-serif;
+	font-weight: 500;
+	font-size: clamp(0.74rem, 1.6vh, 0.95rem);
+	color: var(--ink);
+	text-align: right;
+}
+
+.canvas-context-quote {
+	font-family: 'Playfair Display', serif;
+	font-weight: 700;
+	font-style: italic;
+	font-size: clamp(1rem, 1.5vw, 1.3rem);
+	line-height: 1.45;
+	color: #FFFFFF;
+	max-width: 380px;
+}
+
+.canvas-context-attr {
+	font-family: 'DM Mono', monospace;
+	font-weight: 300;
+	font-size: 0.6rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.82);
+	margin-top: 0.8rem;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.panel-active .project-item {
+	animation: fadeSlideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+}
+
+.panel-active .project-item:nth-child(1) {
+	animation-delay: 0.08s;
+}
+
+.panel-active .project-item:nth-child(2) {
+	animation-delay: 0.12s;
+}
+
+/* ── Mobile Responsive ── */
+@media (max-width: 700px) {
+	body {
+		overflow-y: auto;
+		overflow-x: hidden;
+		height: auto;
+	}
+
+	.site-header {
+		padding: 1rem 1.5rem;
+	}
+
+	.site-header-nav {
+		gap: 0.2rem;
+	}
+
+	.site-header-nav a {
+		font-size: 0.62rem;
+		padding: 0.3rem 0.5rem;
+	}
+
+	.site-tagline {
+		display: none;
+	}
+
+	.site-footer {
+		position: relative;
+		padding: 1.5rem;
+	}
+
+	.split-container {
+		flex-direction: column;
+		height: auto;
+		min-height: 100vh;
+		padding-top: 3.5rem;
+		padding-bottom: 0;
+	}
+
+	.left-side {
+		width: 100%;
+		min-height: 50vh;
+		position: relative;
+	}
+
+	.panel {
+		position: relative;
+		display: none;
+	}
+
+	.panel.panel-active {
+		display: flex;
+	}
+
+	.panel-header,
+	.panel-footer {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+
+	.project-link {
+		padding: 1rem 1.5rem;
+	}
+
+	.project-title {
+		font-size: clamp(1.2rem, 5vw, 1.6rem);
+	}
+
+	.project-category {
+		display: none;
+	}
+
+	.about-content,
+	.contact-content {
+		padding: 1.5rem;
+	}
+
+	.split-divider {
+		width: 100%;
+		height: 1px;
+	}
+
+	.canvas-side {
+		width: 100%;
+		min-height: 50vh;
+	}
+
+	.canvas-image,
+	.canvas-context {
+		inset: 1rem;
+	}
+}
+
+/* ══════════════════════════════════════
+     FIT TO VIEWPORT — one screen, no scroll
+     ══════════════════════════════════════ */
+@media (min-width: 701px) {
+
+	.panel {
+		padding: 0;
+		overflow: hidden;
+	}
+
+	/* Home: about + selected work in one screen */
+	#panel-about {
+		justify-content: center;
+	}
+
+	.about-content {
+		padding: 0 3rem;
+	}
+
+	.about-label,
+	.contact-label {
+		font-size: clamp(0.62rem, 1.3vh, 0.78rem);
+		margin-bottom: clamp(0.5rem, 1.9vh, 1.7rem);
+	}
+
+	.about-headline,
+	.contact-headline {
+		font-size: clamp(1.15rem, 3.6vh, 2.9rem);
+		margin-bottom: clamp(0.5rem, 2.1vh, 1.8rem);
+		max-width: 520px;
+	}
+
+	.about-body {
+		font-size: clamp(0.74rem, 1.95vh, 1.14rem);
+		line-height: 1.62;
+		margin-bottom: clamp(0.6rem, 2.2vh, 1.8rem);
+		max-width: 480px;
+	}
+
+	.about-stack {
+		padding-top: clamp(0.7rem, 2.3vh, 1.9rem);
+	}
+
+	.stack-label {
+		font-size: clamp(0.58rem, 1.2vh, 0.72rem);
+		margin-bottom: clamp(0.4rem, 1.1vh, 0.8rem);
+	}
+
+	.stack-list {
+		gap: clamp(0.4rem, 1.1vh, 0.65rem) clamp(0.7rem, 1.6vw, 1.05rem);
+	}
+
+	.stack-list li {
+		font-size: clamp(0.76rem, 1.6vh, 0.98rem);
+	}
+
+	.about-github {
+		margin-top: clamp(0.7rem, 2.1vh, 1.8rem);
+		padding: clamp(0.35rem, 1.1vh, 0.6rem) 1.1rem clamp(0.35rem, 1.1vh, 0.6rem) 0.9rem;
+		font-size: clamp(0.74rem, 1.55vh, 0.92rem);
+	}
+
+	.panel-header-work {
+		padding: clamp(0.8rem, 3.6vh, 3rem) 3rem clamp(0.4rem, 1.5vh, 1.3rem);
+	}
+
+	.panel-header span {
+		font-size: clamp(0.62rem, 1.3vh, 0.78rem);
+	}
+
+	.project-link {
+		padding: clamp(0.35rem, 1.75vh, 1.45rem) 3rem;
+	}
+
+	.project-number {
+		font-size: clamp(0.66rem, 1.35vh, 0.82rem);
+	}
+
+	.project-category {
+		font-size: clamp(0.6rem, 1.25vh, 0.75rem);
+	}
+
+	.project-title {
+		font-size: clamp(0.95rem, 3.1vh, 2.3rem);
+	}
+
+	.panel-footer {
+		padding: clamp(0.5rem, 1.8vh, 1.7rem) 3rem 0;
+	}
+
+	.panel-footer span {
+		font-size: clamp(0.6rem, 1.25vh, 0.74rem);
+	}
+
+	/* Contact */
+	.contact-content {
+		padding: 0 3rem;
+	}
+
+	.contact-headline {
+		margin-bottom: clamp(0.9rem, 3vh, 2.6rem);
+	}
+
+	.contact-form {
+		gap: clamp(0.5rem, 2.1vh, 1.8rem);
+		max-width: 460px;
+	}
+
+	.form-group label {
+		font-size: clamp(0.58rem, 1.2vh, 0.72rem);
+	}
+
+	.form-group input,
+	.form-group textarea {
+		padding: clamp(0.3rem, 1.15vh, 0.75rem) 0;
+		font-size: clamp(0.82rem, 1.7vh, 1rem);
+	}
+
+	.form-group textarea {
+		min-height: clamp(46px, 11vh, 110px);
+	}
+
+	.form-submit {
+		margin-top: 0.25rem;
+		padding: clamp(0.5rem, 1.7vh, 0.95rem) 2.6rem;
+		font-size: clamp(0.68rem, 1.35vh, 0.82rem);
+	}
+
+	.contact-details {
+		margin-top: clamp(1rem, 3.6vh, 3.4rem);
+		padding-top: clamp(0.7rem, 2.4vh, 2.2rem);
+		gap: clamp(0.3rem, 1.15vh, 0.95rem);
+		max-width: 460px;
+	}
+
+	.contact-details a {
+		font-size: clamp(0.8rem, 1.65vh, 0.98rem);
+	}
+
+	.form-status {
+		font-size: clamp(0.72rem, 1.5vh, 0.85rem);
+	}
+}
+
+/* ── Narrow desktop / tablet: step the scale back down ──
+     The left column is only half of an already-narrow window, so text wraps
+     onto more lines; the larger type above would overflow the screen. ── */
+@media (min-width: 701px) and (max-width: 1099px) {
+
+	.about-headline,
+	.contact-headline {
+		font-size: clamp(1.1rem, 2.8vh, 2.1rem);
+		margin-bottom: clamp(0.5rem, 1.7vh, 1.4rem);
+	}
+
+	.about-body {
+		font-size: clamp(0.72rem, 1.6vh, 0.95rem);
+		margin-bottom: clamp(0.6rem, 1.8vh, 1.4rem);
+	}
+
+	.about-stack {
+		padding-top: clamp(0.7rem, 1.9vh, 1.5rem);
+	}
+
+	.stack-list li {
+		font-size: clamp(0.76rem, 1.5vh, 0.86rem);
+	}
+
+	.panel-header-work {
+		padding: clamp(0.8rem, 3vh, 2.4rem) 3rem clamp(0.4rem, 1.2vh, 1rem);
+	}
+
+	.project-link {
+		padding: clamp(0.35rem, 1.35vh, 1.05rem) 3rem;
+	}
+
+	.project-title {
+		font-size: clamp(0.92rem, 2.55vh, 1.8rem);
+	}
+
+	.panel-footer {
+		padding: clamp(0.5rem, 1.5vh, 1.4rem) 3rem 0;
+	}
+
+	.contact-headline {
+		margin-bottom: clamp(0.9rem, 2.6vh, 2.2rem);
+	}
+
+	.contact-form {
+		gap: clamp(0.5rem, 1.7vh, 1.5rem);
+	}
+
+	.form-group input,
+	.form-group textarea {
+		padding: clamp(0.3rem, 0.9vh, 0.6rem) 0;
+		font-size: clamp(0.82rem, 1.6vh, 0.9rem);
+	}
+
+	.form-group textarea {
+		min-height: clamp(42px, 8vh, 74px);
+	}
+
+	.form-submit {
+		padding: clamp(0.5rem, 1.4vh, 0.75rem) 2.5rem;
+	}
+
+	.contact-details {
+		margin-top: clamp(1rem, 2.8vh, 2.6rem);
+		padding-top: clamp(0.7rem, 2vh, 1.8rem);
+		gap: clamp(0.3rem, 1vh, 0.8rem);
+	}
+
+	.contact-details a {
+		font-size: clamp(0.8rem, 1.55vh, 0.88rem);
+	}
+
+	.form-status {
+		font-size: clamp(0.7rem, 1.4vh, 0.78rem);
+		min-height: 1.1em;
+	}
+
+	.form-group textarea {
+		min-height: clamp(38px, 7vh, 66px);
+	}
+
+	.contact-details {
+		margin-top: clamp(0.8rem, 2.2vh, 2rem);
+	}
+}
+
+/* Short windows: the header already carries a GitHub link, so drop the
+   in-panel button rather than crowd the bio against the navbar. */
+@media (min-width: 701px) and (max-height: 640px) {
+	.about-github {
+		display: none;
+	}
+
+	.panel-header-work {
+		padding-top: clamp(0.6rem, 2.4vh, 1.8rem);
+	}
+}
+
+/* ══════════════════════════════════════
+     PHONES — stacked, still one screen
+     ══════════════════════════════════════ */
+@media (max-width: 700px) {
+
+	body {
+		overflow: hidden;
+		height: 100vh;
+		height: 100dvh;
+	}
+
+	.split-container {
+		height: 100vh;
+		height: 100dvh;
+		min-height: 0;
+		padding-top: 3.6rem;
+		padding-bottom: 2.8rem;
+	}
+
+	.site-footer {
+		position: fixed;
+		padding: 0.9rem 1.5rem;
+	}
+
+	.left-side {
+		flex: 1 1 auto;
+		min-height: 0;
+		overflow: hidden;
+	}
+
+	.canvas-side {
+		flex: 0 0 30dvh;
+		min-height: 0;
+	}
+
+	.canvas-image,
+	.canvas-context {
+		inset: 0.6rem;
+	}
+
+	.panel {
+		height: 100%;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.about-content,
+	.contact-content {
+		padding: 0 1.5rem;
+	}
+
+	.about-label,
+	.contact-label {
+		font-size: 0.58rem;
+		margin-bottom: clamp(0.3rem, 1vh, 0.8rem);
+	}
+
+	.about-headline,
+	.contact-headline {
+		font-size: clamp(1rem, 2.6vh, 1.5rem);
+		margin-bottom: clamp(0.4rem, 1.3vh, 0.9rem);
+	}
+
+	.about-body {
+		font-size: clamp(0.7rem, 1.55vh, 0.88rem);
+		line-height: 1.55;
+		margin-bottom: clamp(0.4rem, 1.3vh, 1rem);
+	}
+
+	.about-stack {
+		padding-top: clamp(0.4rem, 1.2vh, 0.9rem);
+	}
+
+	.stack-list {
+		gap: 0.35rem 0.8rem;
+	}
+
+	.about-github {
+		margin-top: clamp(0.5rem, 1.7vh, 1.1rem);
+		padding: clamp(0.3rem, 0.9vh, 0.5rem) 0.9rem clamp(0.3rem, 0.9vh, 0.5rem) 0.75rem;
+		font-size: clamp(0.72rem, 1.6vh, 0.84rem);
+	}
+
+	.site-header-nav a.nav-external {
+		display: none;
+	}
+
+	.stack-list li {
+		font-size: clamp(0.74rem, 1.7vh, 0.84rem);
+	}
+
+	.panel-header-work {
+		padding: clamp(0.5rem, 2vh, 1.2rem) 1.5rem clamp(0.3rem, 0.9vh, 0.6rem);
+	}
+
+	.project-link {
+		padding: clamp(0.3rem, 1.1vh, 0.8rem) 1.5rem;
+		gap: 1rem;
+	}
+
+	.project-title {
+		font-size: clamp(0.85rem, 2.2vh, 1.3rem);
+	}
+
+	.panel-footer {
+		padding: clamp(0.4rem, 1.2vh, 0.9rem) 1.5rem 0;
+	}
+
+	.contact-form {
+		gap: clamp(0.35rem, 1.2vh, 0.9rem);
+	}
+
+	.form-group input,
+	.form-group textarea {
+		padding: clamp(0.2rem, 0.7vh, 0.5rem) 0;
+		font-size: 0.82rem;
+	}
+
+	.form-group textarea {
+		min-height: clamp(34px, 6vh, 60px);
+	}
+
+	.form-submit {
+		padding: clamp(0.4rem, 1.1vh, 0.65rem) 2rem;
+	}
+
+	.contact-details {
+		margin-top: clamp(0.6rem, 2vh, 1.5rem);
+		padding-top: clamp(0.4rem, 1.3vh, 1rem);
+		gap: clamp(0.2rem, 0.7vh, 0.6rem);
+	}
+
+	.contact-details a {
+		font-size: 0.78rem;
+	}
+
+	.form-status {
+		font-size: 0.72rem;
+		min-height: 1.1em;
+	}
+}
