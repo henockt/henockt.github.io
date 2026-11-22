@@ -1,0 +1,12 @@
+.contact-form { display: flex; flex-direction: column; gap: 8px; max-width: 560px; margin-top: 24px; }
+.contact-form label { font-weight: 500; margin-top: 8px; }
+.contact-form input,
+.contact-form textarea {
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--entry); color: var(--primary); font: inherit;
+}
+.contact-form button {
+  margin-top: 16px; align-self: flex-start; padding: 10px 20px; border-radius: var(--radius);
+  background: var(--primary); color: var(--theme); font-weight: 500; cursor: pointer;
+}
+.contact-form .form-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

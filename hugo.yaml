@@ -1,0 +1,60 @@
+baseURL: https://henockt.github.io/
+languageCode: en-us
+title: henockt
+theme: PaperMod
+enableRobotsTXT: true
+
+outputs:
+  home: [HTML, RSS, JSON]
+
+params:
+  env: production
+  description: "Henock — computer scientist and backend developer working in Go and TypeScript."
+  author: Henock
+  defaultTheme: auto
+  mainSections: [projects]
+  ShowReadingTime: false
+  ShowPostNavLinks: false
+  ShowBreadCrumbs: false
+  ShowShareButtons: false
+  hideFooter: false
+
+  homeInfoParams:
+    Title: "Hi, I'm Henock. I build backend systems and AI infrastructure."
+    Content: >
+      I write clear code, test carefully, and build reliable APIs and secure systems
+      grounded in data structures and algorithms. I’m drawn to problems that sit close
+      to the network (proxies, tunnels, mail routing) and to code that stays correct
+      under concurrency. Currently exploring scalable API design, distributed systems,
+      and inference pipelines.
+
+
+      **Stack:** Go · TypeScript · Python · PostgreSQL · Docker · React
+
+  socialIcons:
+    - name: github
+      url: https://github.com/henockt
+
+  cover:
+    hiddenInList: false
+    hiddenInSingle: false
+
+menu:
+  main:
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 10
+    - identifier: contact
+      name: Contact
+      url: /contact/
+      weight: 20
+    - identifier: github
+      name: GitHub ↗
+      url: https://github.com/henockt
+      weight: 30
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # allows the raw HTML contact form in content/contact.md
