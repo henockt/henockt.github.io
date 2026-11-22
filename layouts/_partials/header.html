@@ -27,6 +27,7 @@
                 {{- end -}}
                 {{- $label_text -}}
             </a>
+            {{- with site.Params.tagline }}<span class="site-tagline">{{ . }}</span>{{ end }}
             {{- end }}
 
             {{- $lsenabled := (or (not site.Params.disableThemeToggle) (and (not site.Params.disableLangToggle) (hugo.IsMultilingual))) }}

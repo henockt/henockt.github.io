@@ -24,3 +24,16 @@
 /* diagrams with transparent backgrounds (cello.svg) need a light backdrop,
    otherwise the dark lines disappear, especially in dark mode */
 .entry-cover img[src$=".svg"] { background: #fff; padding: 16px; border-radius: var(--radius); }
+
+/* role next to the site name in the header */
+.site-tagline {
+  margin-inline-start: 12px; padding-inline-start: 12px; border-inline-start: 1px solid var(--border);
+  font-size: 16px; font-weight: 400; color: var(--secondary); white-space: nowrap;
+}
+@media (max-width: 480px) { .site-tagline { display: none; } }
+
+/* contact form result message */
+.form-status { margin-top: 8px; min-height: 1.5em; }
+.form-status.ok { color: #2e9e5b; }
+.form-status.error { color: #d9534f; }
+.contact-form button:disabled { opacity: 0.6; cursor: wait; }

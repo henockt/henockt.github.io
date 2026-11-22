@@ -3,20 +3,22 @@ locale: en-us
 title: henockt
 theme: PaperMod
 enableRobotsTXT: true
-disableKinds: [taxonomy, term]  # no tag/category pages
+disableKinds: [taxonomy, term, rss]  # no tag pages, no feeds
 
 outputs:
-  home: [HTML, RSS, JSON]
+  home: [HTML]
 
 params:
   env: production
-  description: "Computer scientist and backend developer working in Go and TypeScript."
+  description: "Henock, software engineer working in Go and TypeScript."
   author: Henock
+  tagline: Software Engineer
   defaultTheme: auto
   mainSections: [projects]
   ShowReadingTime: false
   ShowPostNavLinks: false
   ShowBreadCrumbs: false
+  hideMeta: true  # no author byline under project names
   ShowShareButtons: false
   hideFooter: false
 
@@ -35,6 +37,14 @@ params:
   socialIcons:
     - name: github
       url: https://github.com/henockt
+
+  images: [/images/og.png]  # link preview image for pages without their own
+
+  assets:
+    favicon: /favicon-32x32.png
+    favicon16x16: /favicon-16x16.png
+    favicon32x32: /favicon-32x32.png
+    apple_touch_icon: /apple-touch-icon.png
 
   cover:
     hiddenInList: false

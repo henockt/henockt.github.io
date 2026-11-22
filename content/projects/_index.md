@@ -1,3 +1,3 @@
 ---
-title: Selected Work
+title: Projects
 ---
