@@ -3,13 +3,14 @@ locale: en-us
 title: henockt
 theme: PaperMod
 enableRobotsTXT: true
+disableKinds: [taxonomy, term]  # no tag/category pages
 
 outputs:
   home: [HTML, RSS, JSON]
 
 params:
   env: production
-  description: "Henock — computer scientist and backend developer working in Go and TypeScript."
+  description: "Computer scientist and backend developer working in Go and TypeScript."
   author: Henock
   defaultTheme: auto
   mainSections: [projects]
@@ -50,9 +51,12 @@ menu:
       url: /contact/
       weight: 20
     - identifier: github
-      name: GitHub ↗
+      name: ""
+      title: GitHub
       url: https://github.com/henockt
       weight: 30
+      params:
+        icon: github
 
 markup:
   goldmark:

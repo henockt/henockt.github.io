@@ -1,14 +1,15 @@
 ---
 title: cello
-summary: "Tunneling — Go · TCP · Reverse Proxy"
+summary: "Tunneling. Built with Go, TCP and a reverse proxy."
 weight: 2
-tags: [Go, TCP, Reverse Proxy]
 cover:
   image: /images/cello.svg
   alt: cello system architecture diagram
-  caption: "System architecture — Go · TCP · Reverse Proxy"
+  caption: "cello system architecture"
 ---
 
-**Tunneling.**
+Tunneling.
+
+{{< stack "Go" "TCP" "Reverse Proxy" >}}
 
 Source: [github.com/henockt/cello](https://github.com/henockt/cello)

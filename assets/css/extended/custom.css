@@ -10,3 +10,17 @@
   background: var(--primary); color: var(--theme); font-weight: 500; cursor: pointer;
 }
 .contact-form .form-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* GitHub icon in the header menu */
+.menu-icon svg { width: 20px; height: 20px; vertical-align: middle; }
+
+/* stack tags: plain text pills, not links */
+.stack-tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 16px 0; list-style: none; }
+.stack-tags li {
+  padding: 2px 10px; border-radius: var(--radius); background: var(--code-bg);
+  color: var(--secondary); font-size: 14px; margin: 0;
+}
+
+/* diagrams with transparent backgrounds (cello.svg) need a light backdrop,
+   otherwise the dark lines disappear, especially in dark mode */
+.entry-cover img[src$=".svg"] { background: #fff; padding: 16px; border-radius: var(--radius); }

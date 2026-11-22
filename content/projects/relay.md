@@ -1,14 +1,15 @@
 ---
 title: relay
-summary: "Email Aliasing — Go · Next.js · PostgreSQL · Mailgun"
+summary: "Email aliasing. Built with Go, Next.js, PostgreSQL and Mailgun."
 weight: 1
-tags: [Go, Next.js, PostgreSQL, Mailgun]
 cover:
   image: /images/relay.png
   alt: relay landing page and Google sign-in screen
-  caption: "relay — Go · Next.js · PostgreSQL · Mailgun"
+  caption: "relay landing page and Google sign-in"
 ---
 
-**Email aliasing.**
+Email aliasing.
+
+{{< stack "Go" "Next.js" "PostgreSQL" "Mailgun" >}}
 
 Source: [github.com/henockt/relay](https://github.com/henockt/relay)
