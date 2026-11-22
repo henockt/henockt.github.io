@@ -18,30 +18,28 @@ ShowToc: false
 </form>
 
 <script>
-// Send through Formspree in the background so visitors stay on this page.
-// Without JavaScript the form still posts normally.
 (function () {
-  var form = document.getElementById('contactForm');
-  var status = document.getElementById('formStatus');
-  var button = form.querySelector('button');
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  const button = form.querySelector('button');
 
-  form.addEventListener('submit', async function (e) {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     status.className = 'form-status';
     button.disabled = true;
-    button.textContent = 'Sending...';
+    button.textContent = 'Sending…';
     try {
-      var res = await fetch(form.action, {
+      const res = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' }
       });
       if (!res.ok) throw new Error(res.status);
       form.reset();
-      status.textContent = "Thanks, your message was sent. I'll get back to you soon.";
+      status.textContent = 'Thanks, your message is on its way.';
       status.classList.add('ok');
     } catch (err) {
-      status.textContent = 'Something went wrong. Please try again in a moment.';
+      status.textContent = 'Something went wrong. Please reach me on GitHub instead.';
       status.classList.add('error');
     } finally {
       button.disabled = false;

@@ -3,7 +3,7 @@ locale: en-us
 title: henockt
 theme: PaperMod
 enableRobotsTXT: true
-disableKinds: [taxonomy, term, rss]  # no tag pages, no feeds
+disableKinds: [taxonomy, term, rss]
 
 outputs:
   home: [HTML]
@@ -18,7 +18,7 @@ params:
   ShowReadingTime: false
   ShowPostNavLinks: false
   ShowBreadCrumbs: false
-  hideMeta: true  # no author byline under project names
+  hideMeta: true
   ShowShareButtons: false
   hideFooter: false
 
@@ -38,7 +38,7 @@ params:
     - name: github
       url: https://github.com/henockt
 
-  images: [/images/og.png]  # link preview image for pages without their own
+  images: [/images/og.png]
 
   assets:
     favicon: /favicon.ico
@@ -71,4 +71,4 @@ menu:
 markup:
   goldmark:
     renderer:
-      unsafe: true  # allows the raw HTML contact form in content/contact.md
+      unsafe: true
