@@ -11,7 +11,6 @@ ShowToc: false
   <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
   <label for="message">Message</label>
   <textarea id="message" name="message" rows="6" placeholder="What would you like to build?" required></textarea>
-  <!-- honeypot: hidden from people, tempting to bots -->
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="form-trap">
   <button type="submit">Send Message</button>
   <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
