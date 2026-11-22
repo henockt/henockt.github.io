@@ -30,7 +30,7 @@ params:
       and inference pipelines.
 
 
-      **Stack:** Go · TypeScript · Python · PostgreSQL · Docker · React
+      **Stack:** Go · TypeScript · Python · PostgreSQL · Docker
 
   socialIcons:
     - name: github
