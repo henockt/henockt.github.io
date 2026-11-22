@@ -2,7 +2,7 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: [hugo-papermod]
+    branches: [hugo]
   workflow_dispatch:
 
 permissions:
